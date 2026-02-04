@@ -112,7 +112,7 @@ class OpenWbMqttLock(OpenWBBaseEntity, LockEntity):
 
         self.entity_description = description
         self._attr_unique_id = slugify(f"{uniqueID}-{self.entity_description.name}")
-        self.entity_id = f"{LOCK_DOMAIN}.{uniqueID}-{self.entity_description.name}"
+        self.entity_id = f"{LOCK_DOMAIN}.{slugify(f'{uniqueID}_{description.name}')}"
 
         self._attr_is_locked = None
         self._state_topic = state_topic

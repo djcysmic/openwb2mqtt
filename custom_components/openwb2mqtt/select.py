@@ -233,7 +233,7 @@ class openwbSelect(OpenWBBaseEntity, SelectEntity):
         # Initialize the inverter operation mode setting entity.
         self.entity_description = description
         self._attr_unique_id = slugify(f"{uniqueID}-{description.name}")
-        self.entity_id = f"{SELECT_DOMAIN}.{uniqueID}-{description.name}"
+        self.entity_id = f"{SELECT_DOMAIN}.{slugify(f'{uniqueID}_{description.name}')}"
         self._attr_name = description.name
 
         self._attr_current_option = None
@@ -421,7 +421,7 @@ class openwbDynamicSelect(OpenWBBaseEntity, SelectEntity):
         # Initialize the entity
         self.entity_description = description
         self._attr_unique_id = slugify(f"{uniqueID}-{description.name}")
-        self.entity_id = f"{SELECT_DOMAIN}.{uniqueID}-{description.name}"
+        self.entity_id = f"{SELECT_DOMAIN}.{slugify(f'{uniqueID}_{description.name}')}"
         self._attr_name = description.name
 
         self._attr_current_option = None
