@@ -280,9 +280,11 @@ class openwbSensor(OpenWBBaseEntity, SensorEntity):
             """Handle new MQTT messages."""
             self._attr_native_value = message.payload
             device_registry = dr.async_get(self.hass)
-            device = device_registry.async_get_device(
-                self.device_info.get("identifiers")
-            )
+            device = self.device_entry
+
+            if device is None:
+                return
+
             if self.entity_description.value_fn is not None:
                 self._attr_native_value = self.entity_description.value_fn(
                     self._attr_native_value
