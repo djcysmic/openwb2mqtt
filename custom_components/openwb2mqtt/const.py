@@ -762,6 +762,7 @@ SENSORS_PER_CHARGEPOINT = [
         icon="mdi:tag-multiple",
         entity_category=EntityCategory.DIAGNOSTIC,
         entity_registry_enabled_default=False,
+        value_fn=lambda x: _safeStringOp(x, lambda s: s.replace('"', "")),
     ),
     openwbSensorEntityDescription(
         key="get/connected_vehicle/soc",
